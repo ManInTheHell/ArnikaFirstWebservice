@@ -44,15 +44,23 @@ def reset_parameter(param):
     global primal_second_parameter
 
     if param == 'a':
-        first_parameter = primal_first_parameter
-        first_parameter += random.choice([-2, 2])
-        primal_first_parameter = first_parameter
-        return first_parameter
+        if first_parameter is not None:
+            first_parameter = primal_first_parameter
+            first_parameter += random.choice([-2, 2])
+            primal_first_parameter = first_parameter
+            return first_parameter
+        else:
+            first_parameter = fetch_parameter('a')
+            return first_parameter
     elif param == 'b':
-        second_parameter = primal_second_parameter
-        second_parameter += random.choice([-2, 2])
-        primal_second_parameter = second_parameter
-        return second_parameter
+        if second_parameter is not None:
+            second_parameter = primal_second_parameter
+            second_parameter += random.choice([-2, 2])
+            primal_second_parameter = second_parameter
+            return second_parameter
+        else:
+            second_parameter = fetch_parameter('b')
+            return second_parameter
     else:
         return None
 
